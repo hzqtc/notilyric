@@ -10,7 +10,7 @@ Based on NotiLyric, there come two utilities: "FMLyric" and "QLyric".
 
 ## FMLyric
 
-Display lyric for current plaing of [FMD](https://github.com/hzqtc/fmd).
+Display lyric for [FMD](https://github.com/hzqtc/fmd).
 
 	python2 fmlyric.py [options]
 
