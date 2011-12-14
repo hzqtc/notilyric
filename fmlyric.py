@@ -9,7 +9,7 @@ import json
 from notilyric import NotiLyric
 
 class FMLyric(object):
-	def __init__(self, addr = 'localhost', port = 10098):
+	def __init__(self, addr, port):
 		self.addr = addr
 		self.port = port
 
@@ -52,12 +52,15 @@ class FMLyric(object):
 
 if __name__ == '__main__':
 	opts, args = getopt.getopt(sys.argv[1:], 'a:p:')
-	if 'a' not in opts and 'p' not in opts:
-		fmlyric = FMLyric()
-	elif 'p' not in opts:
-		fmlyric = FMLyric(opts['a'])
-	else:
-		fmlyric = FMLyric(opts['a'], opts['p'])
+	addr = 'localhost'
+	port = 10098
+
+	for k,v in opts:
+		if k == '-a':
+			addr = v
+		elif k == '-p':
+			port = int(v)
+	fmlyric = FMLyric(addr, port)
 
 	fmlyric.run()
 
