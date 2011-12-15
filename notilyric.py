@@ -50,8 +50,8 @@ class Lyric(object):
 
 class QQLyric(object):
 	def search(self, artist, title):
-		title = title.decode('utf-8').encode('gb2312')
-		artist = artist.decode('utf-8').encode('gb2312')
+		title = title.decode('utf-8').encode('gbk')
+		artist = artist.decode('utf-8').encode('gbk')
 		params = {'name': title, 'singer': artist, 'from': 'qqplayer'}
 		searchURL = 'http://qqmusic.qq.com/fcgi-bin/qm_getLyricId.fcg?%s' % urllib.urlencode(params)
 		try:
@@ -79,7 +79,7 @@ class QQLyric(object):
 		return lyricContent
 	
 	def _conxmlenc(self, xml):
-		xml = xml.decode('gb2312', 'ignore').encode('utf-8')
+		xml = xml.decode('gbk').encode('utf-8')
 		return xml.replace('gb2312', 'utf-8')
 
 class NotiLyric(object):
