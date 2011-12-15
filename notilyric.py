@@ -113,7 +113,6 @@ class NotiLyric(object):
 
 	def close(self):
 		self.hide()
-		pynotify.uninit()
 
 	def hide(self):
 		self.notification.close()

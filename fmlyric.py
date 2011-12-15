@@ -35,8 +35,14 @@ class FMLyric(object):
 				self.notilyric.close()
 				break
 
-			self.conn.send('info')
-			obj = json.loads(self.conn.recv(4096))
+			try:
+				self.conn.send('info')
+				obj = json.loads(self.conn.recv(4096))
+			except:
+				print 'Server quit.'
+				self.conn.close()
+				self.notilyric.close()
+				break
 
 			status = obj['status']
 			if status == 'stopped':
