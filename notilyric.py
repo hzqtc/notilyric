@@ -2,6 +2,7 @@
 
 import re
 import gtk
+import thread
 import urllib2
 import urllib
 import pynotify
@@ -91,23 +92,24 @@ class NotiLyric(object):
 		self.artist = self.title = ''
 		self.notification = None
 
+		self.download_lock = thread.allocate_lock()
+
 		pynotify.init(app)
 
-	def setinfo(self, artist, title, albumcover = ''):
+	def setinfo(self, artist, title, cover = ''):
 		self.artist = artist
 		self.title = title
 		if self.notification:
 			self.notification.close()
 		self.notification = pynotify.Notification('', '')
-		if albumcover:
-			self.notification.set_icon_from_pixbuf(gtk.gdk.pixbuf_new_from_file(albumcover))
-
-		self.download()
-	
-	def setcover(self, cover):
 		self.notification.set_icon_from_pixbuf(gtk.gdk.pixbuf_new_from_file(cover))
-
+		thread.start_new_thread(self.download, ())
+	
 	def download(self):
+		print 'wait for download lock'
+		self.download_lock.acquire()
+		print 'get download lock'
+
 		self.lyric.clear()
 		self.notification.update("%s - %s" % (self.artist, self.title), 'Lyric downloading...')
 		self.notification.show()
@@ -119,6 +121,9 @@ class NotiLyric(object):
 		else:
 			self.notification.update("%s - %s" % (self.artist, self.title), 'Lyric not found!')
 			self.notification.show()
+
+		self.download_lock.release()
+		print 'release download lock'
 
 	def close(self):
 		self.hide()
