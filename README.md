@@ -4,9 +4,9 @@ NotiLyric is a python lyric library. It's very easy for applications to use.
 
 NotiLyric can download lyrics from the internet (QQMusic is the only providor now) and display current line using a bubble notification.
 
-See the screenshot at: http://johnny-huang.appspot.com/use-notify-system-to-display-lyric
+![NotiLyric](http://johnny-huang.appspot.com/file/notify-lyric.png)
 
-Based on NotiLyric, there comes "FMLyric" and "QLyric".
+Based on NotiLyric, I offer you "FMLyric" and "QLyric".
 
 ## FMLyric
 
