@@ -68,9 +68,9 @@ class QQLyric(object):
 
 		lyricId = int(songInfoNodes[0].attributes['id'].value)
 		lyricURL = 'http://music.qq.com/miniportal/static/lyric/%d/%d.xml' % (lyricId % 100, lyricId)
-		return self.fetch(lyricURL)
+		return self._fetch(lyricURL)
 
-	def fetch(self, url):
+	def _fetch(self, url):
 		try:
 			lyricXML = self._conxmlenc(urllib2.urlopen(url).read())
 		except:
@@ -88,7 +88,7 @@ class NotiLyric(object):
 	def __init__(self, app = 'notilyric'):
 		self.searchengine = QQLyric()
 		self.lyric = Lyric()
-		
+
 		self.artist = self.title = ''
 		self.notification = None
 
@@ -102,10 +102,11 @@ class NotiLyric(object):
 		if self.notification:
 			self.notification.close()
 		self.notification = pynotify.Notification('', '')
-		self.notification.set_icon_from_pixbuf(gtk.gdk.pixbuf_new_from_file(cover))
-		thread.start_new_thread(self.download, ())
-	
-	def download(self):
+		if cover:
+			self.notification.set_icon_from_pixbuf(gtk.gdk.pixbuf_new_from_file(cover))
+		thread.start_new_thread(self._download, ())
+
+	def _download(self):
 		self.download_lock.acquire()
 
 		self.lyric.clear()
