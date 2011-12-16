@@ -106,9 +106,7 @@ class NotiLyric(object):
 		thread.start_new_thread(self.download, ())
 	
 	def download(self):
-		print 'wait for download lock'
 		self.download_lock.acquire()
-		print 'get download lock'
 
 		self.lyric.clear()
 		self.notification.update("%s - %s" % (self.artist, self.title), 'Lyric downloading...')
@@ -123,7 +121,6 @@ class NotiLyric(object):
 			self.notification.show()
 
 		self.download_lock.release()
-		print 'release download lock'
 
 	def close(self):
 		self.hide()
