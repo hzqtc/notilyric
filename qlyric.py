@@ -33,16 +33,13 @@ class QLyric(EventPlugin):
 		self.notilyric.close()
 
 	def enabled(self):
-		print 'enable'
 		self.live = True
 		thread.start_new_thread(self.display, ())
 	
 	def disabled(self):
-		print 'disable'
 		self.live = False
 		self.notilyric.close()
 
 	def plugin_on_song_started(self, song):
-		print 'set_info'
 		self.notilyric.setinfo(song.get('artist'), song.get('title'))
 
