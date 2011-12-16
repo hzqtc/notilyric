@@ -48,7 +48,7 @@ class FMLyric(object):
 				break
 
 			status = obj['status']
-			if status == 'stopped':
+			if status != 'playing':
 				self.notilyric.hide()
 				continue
 
