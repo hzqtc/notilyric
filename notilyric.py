@@ -1,6 +1,7 @@
 #! /usr/bin/env python2
 
 import re
+import gtk
 import urllib2
 import urllib
 import pynotify
@@ -88,15 +89,23 @@ class NotiLyric(object):
 		self.lyric = Lyric()
 		
 		self.artist = self.title = ''
+		self.notification = None
 
 		pynotify.init(app)
-		self.notification = pynotify.Notification('', '')
 
-	def setinfo(self, artist, title):
-		if self.artist != artist or self.title != title:
-			self.artist = artist
-			self.title = title
-			self.download()
+	def setinfo(self, artist, title, albumcover = ''):
+		self.artist = artist
+		self.title = title
+		if self.notification:
+			self.notification.close()
+		self.notification = pynotify.Notification('', '')
+		if albumcover:
+			self.notification.set_icon_from_pixbuf(gtk.gdk.pixbuf_new_from_file(albumcover))
+
+		self.download()
+	
+	def setcover(self, cover):
+		self.notification.set_icon_from_pixbuf(gtk.gdk.pixbuf_new_from_file(cover))
 
 	def download(self):
 		self.lyric.clear()

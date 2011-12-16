@@ -39,7 +39,13 @@ class QLyric(EventPlugin):
 	
 	def disabled(self):
 		self.live = False
+		self.notilyric.close()
 
 	def plugin_on_song_started(self, song):
 		self.song = song
 		thread.start_new_thread(self.notilyric.setinfo, (song.get('artist'), song.get('title')))
+	
+		cover = song.find_cover()
+		if cover:
+			self.notilyric.setcover(cover.name)
+
