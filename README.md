@@ -6,7 +6,7 @@ NotiLyric can download lyrics from the internet (QQMusic is the only providor no
 
 See the screenshot at: http://johnny-huang.appspot.com/use-notify-system-to-display-lyric
 
-Based on NotiLyric, there come two utilities: "FMLyric" and "QLyric".
+Based on NotiLyric, there comes "FMLyric".
 
 ## FMLyric
 
@@ -15,14 +15,6 @@ Display lyric for [FMD](https://github.com/hzqtc/fmd).
 	python2 fmlyric.py [options]
 
 Options: -a for FMD address, -p for FMD port.
-
-## QLyric
-
-QLyric is a QuodLibet lyric plugin. To try it, just copy "qlyric.py" and "notilyric.py" to your QuodLibet plugin directory.
-
-	cp qlyric.py notilyric.py .quodlibet/plugins/events/
-
-Start QuodLibet and active QLyric plugin in plugins dialog. Then play some music and enjoy!
 
 ## Depends
 
