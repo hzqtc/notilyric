@@ -7,6 +7,8 @@
 
 import thread
 import time
+import tempfile
+
 from notilyric import NotiLyric
 from quodlibet.plugins.events import EventPlugin
 from quodlibet.player import playlist as player
@@ -36,11 +38,14 @@ class QLyric(EventPlugin):
 	def enabled(self):
 		self.live = True
 		thread.start_new_thread(self.display, ())
-	
+
 	def disabled(self):
 		self.live = False
 		self.notilyric.close()
 
 	def plugin_on_song_started(self, song):
-		self.notilyric.setinfo(song.get('artist'), song.get('title'))
-
+		cover = song.find_cover()
+		if cover:
+			self.notilyric.setinfo(song.get('artist'), song.get('title'), cover.name)
+		else:
+			self.notilyric.setinfo(song.get('artist'), song.get('title'))
