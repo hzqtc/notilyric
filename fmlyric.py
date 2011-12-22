@@ -5,7 +5,6 @@ import getopt
 import socket
 import time
 import json
-import urllib
 
 from notilyric import NotiLyric
 
@@ -54,14 +53,12 @@ class FMLyric(object):
 
 			artist = obj['song']['artist'].encode('utf-8')
 			title = obj['song']['title'].encode('utf-8')
-			coverurl = obj['song']['cover']
 			progress = obj['progress']
 
 			if self.artist != artist or self.title != title:
 				self.artist = artist
 				self.title = title
-				coverfile, header = urllib.urlretrieve(coverurl)
-				self.notilyric.setinfo(artist, title, coverfile)
+				self.notilyric.setinfo(artist, title)
 			self.notilyric.display(progress)
 
 if __name__ == '__main__':

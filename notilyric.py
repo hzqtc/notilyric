@@ -1,7 +1,6 @@
 #! /usr/bin/env python2
 
 import re
-import gtk
 import thread
 import urllib2
 import urllib
@@ -102,8 +101,6 @@ class NotiLyric(object):
 		if self.notification:
 			self.notification.close()
 		self.notification = pynotify.Notification('', '')
-		if cover:
-			self.notification.set_icon_from_pixbuf(gtk.gdk.pixbuf_new_from_file(cover))
 		thread.start_new_thread(self._download, ())
 
 	def _download(self):
