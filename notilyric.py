@@ -124,7 +124,8 @@ class NotiLyric(object):
 		self.hide()
 
 	def hide(self):
-		self.notification.close()
+		if self.notification:
+			self.notification.close()
 
 	def display(self, progress):
 		lyricLine = self.lyric.getline(progress)
