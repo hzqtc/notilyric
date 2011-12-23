@@ -48,7 +48,7 @@ class FMLyric(object):
 
 			status = obj['status']
 			if status != 'playing':
-				self.notilyric.hide()
+				self.notilyric.close()
 				continue
 
 			artist = obj['song']['artist'].encode('utf-8')

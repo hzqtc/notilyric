@@ -89,7 +89,7 @@ class NotiLyric(object):
 		self.lyric = Lyric()
 
 		self.artist = self.title = ''
-		self.notification = None
+		self.notification = pynotify.Notification('', '')
 
 		self.download_lock = thread.allocate_lock()
 
@@ -98,9 +98,6 @@ class NotiLyric(object):
 	def setinfo(self, artist, title, cover = ''):
 		self.artist = artist
 		self.title = title
-		if self.notification:
-			self.notification.close()
-		self.notification = pynotify.Notification('', '')
 		thread.start_new_thread(self._download, ())
 
 	def _download(self):
@@ -121,11 +118,7 @@ class NotiLyric(object):
 		self.download_lock.release()
 
 	def close(self):
-		self.hide()
-
-	def hide(self):
-		if self.notification:
-			self.notification.close()
+		self.notification.close()
 
 	def display(self, progress):
 		lyricLine = self.lyric.getline(progress)

@@ -27,12 +27,11 @@ class QLyric(EventPlugin):
 		while self.live:
 			time.sleep(self.interval)
 			if player.paused:
-				self.notilyric.hide()
+				self.notilyric.close()
 				continue
 
 			progress = int(player.get_position() // 1000)
 			self.notilyric.display(progress)
-		self.notilyric.close()
 
 	def enabled(self):
 		self.live = True
