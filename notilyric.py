@@ -76,8 +76,11 @@ class QQLyric(object):
 			return None
 
 		lyricXMLDoc = minidom.parseString(lyricXML)
-		lyricContent = lyricXMLDoc.getElementsByTagName('lyric')[0].firstChild.data
-		return lyricContent
+		try:
+			lyricContent = lyricXMLDoc.getElementsByTagName('lyric')[0].firstChild.data
+			return lyricContent
+		except:
+			return ''
 	
 	def _conxmlenc(self, xml):
 		xml = xml.decode('gbk').encode('utf-8')
