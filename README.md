@@ -14,7 +14,15 @@ Display lyric for [FMD](https://github.com/hzqtc/fmd).
 
 	python2 fmlyric.py [options]
 
-Options: -a for FMD address, -p for FMD port.
+Options: -a for FMD address (default localhost), -p for FMD port (defalt 10098).
+
+## MPLyric
+
+Display lyric for [MPD](http://mpd.wikia.com/).
+
+	python2 mplyric.py [options]
+
+Options: -a for MPD address (default localhost), -p for MPD port (defalt 6600).
 
 ## QLyric
 
