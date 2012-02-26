@@ -6,7 +6,7 @@ NotiLyric can download lyrics from the internet (QQMusic is the only providor no
 
 ![NotiLyric](http://johnny-huang.appspot.com/file/notify-lyric.png)
 
-Based on NotiLyric, I offer you "FMLyric" and "QLyric".
+Based on NotiLyric, I offer you the following lyric display programs and plugins.
 
 ## FMLyric
 
@@ -36,5 +36,4 @@ Start QuodLibet and enable QLyric plugin. You will see a bubble notification on 
 
 ## Depends
 
-Python2 of course, and `python-notify` in addition.
-
+`python2` and `python-notify` are required, `python-mpd` is a must for MPLyric.
