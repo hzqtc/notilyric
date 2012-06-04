@@ -25,7 +25,6 @@ class FMLyric(object):
 		except:
 			print 'Connect to FMD failed. Is FMD running?'
 			return
-		res = self.conn.recv(1024)	# receive welcome info
 
 		while True:
 			try:
@@ -47,13 +46,13 @@ class FMLyric(object):
 				break
 
 			status = obj['status']
-			if status != 'playing':
+			if status != 'play':
 				self.notilyric.close()
 				continue
 
-			artist = obj['song']['artist'].encode('utf-8')
-			title = obj['song']['title'].encode('utf-8')
-			progress = obj['progress']
+			artist = obj['artist'].encode('utf-8')
+			title = obj['title'].encode('utf-8')
+			progress = obj['pos']
 
 			if self.artist != artist or self.title != title:
 				self.artist = artist
